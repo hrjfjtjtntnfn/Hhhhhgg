@@ -1,0 +1,26 @@
+name: Run tmate session
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  tmate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up tmate
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tmate
+
+      - name: Start tmate session
+        run: |
+          tmate -F
+          
